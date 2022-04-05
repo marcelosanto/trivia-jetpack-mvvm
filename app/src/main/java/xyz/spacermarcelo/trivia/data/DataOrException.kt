@@ -1,4 +1,7 @@
 package xyz.spacermarcelo.trivia.data
 
-class DataOrException {
-}
+data class DataOrException<T, Boolean, E : Exception>(
+    var data: T? = null,
+    var loading: Boolean? = null,
+    var e: E? = null
+)
