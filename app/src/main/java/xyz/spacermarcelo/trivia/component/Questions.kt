@@ -95,12 +95,12 @@ fun QuestionDisplay(
             horizontalAlignment = Alignment.Start
         ) {
             if (questionIndex.value >= 3) ShowProgress(score = questionIndex.value)
-            viewModel.data.value.data?.let {
-                QuestionTracker(
-                    counter = questionIndex.value,
-                    outOf = it.size
-                )
-            }
+            
+            QuestionTracker(
+                counter = questionIndex.value,
+                outOf = viewModel.getTotalQuestionCount()
+            )
+
             DrawDottedLine(pathEffect)
 
             Column {
