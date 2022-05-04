@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.spacermarcelo.trivia.model.QuestionItem
@@ -55,7 +57,6 @@ fun Questions(viewModel: QuestionsViewModel) {
     }
 }
 
-//@Preview
 @Composable
 fun QuestionDisplay(
     question: QuestionItem,
@@ -235,4 +236,58 @@ fun QuestionTracker(counter: Int = 10, outOf: Int = 100) {
             }
         }
     }, modifier = Modifier.padding(20.dp))
+}
+
+@Preview
+@Composable
+fun ShowProgress(score: Int = 12) {
+
+    val gradient = Brush.linearGradient(
+        listOf(
+            Color(0xFFF95075),
+            Color(0xFFBE6BE5)
+        )
+    )
+
+    Row(
+        modifier = Modifier
+            .padding(3.dp)
+            .fillMaxWidth()
+            .height(45.dp)
+            .border(
+                width = 4.dp, brush = Brush.linearGradient(
+                    colors = listOf(
+                        AppColors.mLightPurple,
+                        AppColors.mLightPurple
+                    )
+                ),
+                shape = RoundedCornerShape(34.dp)
+            )
+            .clip(
+                RoundedCornerShape(
+                    topStartPercent = 50,
+                    topEndPercent = 50,
+                    bottomStartPercent = 50,
+                    bottomEndPercent = 50
+                )
+            )
+            .background(Color.Transparent),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Button(
+            contentPadding = PaddingValues(1.dp),
+            onClick = {},
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(brush = gradient),
+            enabled = false,
+            elevation = null,
+            colors = buttonColors(
+                backgroundColor = Color.Transparent,
+                disabledBackgroundColor = Color.Transparent
+            )
+        ) {
+
+        }
+    }
 }
